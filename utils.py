@@ -45,3 +45,22 @@ def fetch_league_id(league_name):
     print(f'League "{league_name}" not found.')
     return None
 
+def fetch_team_id(team_name):
+    '''
+    Fetches the team ID based on the team name.
+
+    Args:
+    team_name (str): The name of the team.
+
+    Returns:
+    int: The ID of the team if found, else None.
+    '''
+    url = 'https://v3.football.api-sports.io/teams'
+    params = {'search': team_name}
+    data = fetch_data(url, params)
+    if data and 'response' in data:
+        teams = data['response']
+        if teams:
+            return teams[0]['team']['id']
+    print(f'Team "{team_name}" not found.')
+    return None
