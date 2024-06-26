@@ -41,13 +41,25 @@ def display_standings():
     Fetches and displays the standings from the database.
     '''
     df = fetch_data_from_table('matches')
-    print("Matches :")
+    print("Matches:")
     display_dataframe(df)
 
 def display_team_details():
     '''
     Fetches and displays the team details from the database.
     '''
-    df = fetch_data_from_table('team')
+    df = fetch_data_from_table('teams')
     print("Team Details:")
     display_dataframe(df)
+
+# Test function calls
+if __name__ == "__main__":
+    print("Displaying Leagues:")
+    display_leagues()
+
+    print("\nDisplaying Standings:")
+    display_standings()
+
+    print("\nDisplaying Team Details:")
+    display_team_details()
+
