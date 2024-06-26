@@ -1,73 +1,69 @@
-import requests
-import pandas as pd
-from config import FOOTBALL_API_KEY
-from database import store_dataframe_in_table
-from display import display_leagues, display_standings, display_team_details
+from utils import fetch_data, fetch_league_id
 
-def fetch_data(url, params=None):
+def fetch_leagues(name=None):
     '''
-    Fetches data from the given API URL with optional parameters.
+    Fetches the football league based on the name from API.
 
     Args:
-    url (str): The API endpoint URL.
-    params (dict, optional): Parameters to include in the request.
-
-    Returns:
-    dict: The JSON response from the API if successful, else None.
+    name (str): The name of the league to search for.
     '''
-    headers = {'X-Auth-Token': FOOTBALL_API_KEY}
-    try:
-        response = requests.get(url, headers=headers, params=params)
-        response.raise_for_status()
-        return response.json()
-    except requests.RequestException as e:
-        print(f"API request failed: {e}")
-        return None
-
-def fetch_leagues():
-    '''
-    Fetches a list of available football leagues from API and stores them in the database.
-    '''
-    url = 'https://api.football-data.org/v4/matches/'
-    data = fetch_data(url)
-    if data and 'leagues' in data:
-        leagues = data['leagues']
-        df = pd.DataFrame(leagues)
-        store_dataframe_in_table(df, 'leagues')
-        display_leagues()  # Display leagues after storing them
+    url = 'https://v3.football.api-sports.io/leagues'
+    params = { 'search' : name}
+    data = fetch_data(url, params)
+    if data and 'response' in data:
+        response = data['response'][0]
+        print(response)
     else:
-        print('Failed to fetch leagues or no leagues data available.')
+        print('Failed to fetch league or no leagues data available.')
 
-def fetch_standings(league_id):
+def fetch_standings(league=None, season=None):
     '''
-    Fetches the standings for a specific league from API and stores them in the database.
+    Fetches the standings for a specific league and season from API.
 
     Args:
-    league_id (int): The ID of the league.
+    league (str): The name of the league.
+    season (int): The season year.
     '''
-    url = f'https://api.football-data.org/v2/competitions/{league_id}/matches'
-    data = fetch_data(url)
-    if data and 'matches' in data:
-        standings = data['matches']
-        df = pd.DataFrame(standings)
-        store_dataframe_in_table(df, 'matches')
-        display_standings()  # Display standings after storing them
+    league_id = None
+    if league:
+        league_id = fetch_league_id(league)
+
+    if not league_id:
+        print('League ID not found.')
+        return
+
+    if not season:
+        print('Season not specified.')
+        return
+
+    url = 'https://v3.football.api-sports.io/standings'
+    params = {'league': league_id, 'season': season}
+    data = fetch_data(url, params)
+    if data and 'response' in data:
+        response = data['response'][0]['league']['standings']
+        print(response)
     else:
         print('Failed to fetch standings or no standings data available.')
 
-def fetch_team_details(team_id):
+
+def fetch_team_info(name=None, country=None):
     '''
-    Fetches details for a specific team from the API and stores them in the database.
+    Fetches details for teams based on name or country from the API.
 
     Args:
-    team_id (int): The ID of the team.
+    name (str): The name of the team to search for.
+    country (str): The country name of the team to search for.
     '''
-    url = f"https://api.football-data.org/v2/teams/{team_id}"
-    data = fetch_data(url)
-    if data and 'team' in data:
-        team = data['team']
-        df = pd.DataFrame([team])
-        store_dataframe_in_table(df, 'team')
-        display_team_details()  # Display team details after storing them
+    url = 'https://v3.football.api-sports.io/teams'
+    params = {}
+    if name:
+        params['search'] = name
+    if country:
+        params['country'] = country
+
+    data = fetch_data(url, params)
+    if data and 'response' in data:
+        response = data['response'][0]
+        print(response)
     else:
         print('Failed to fetch team details or no team data available.')
