@@ -19,17 +19,14 @@ def main():
             fetch_leagues(name=league_name)
         elif choice == '3':
             team_name = input("Enter the name of the team: ")
-            season = input("Enter the season year (e.g., 2021): ")
-            fetch_team_standings(name=team_name, season=season)
+            fetch_team_standings(name=team_name)
         elif choice == '4':
             team_name = input("Enter the name of the team: ")
             league_name = input("Enter the name of the league: ")
-            season = input("Enter the season year (e.g., 2021): ")
-            fetch_team_stats(name=team_name, league=league_name, season=season)
+            fetch_team_stats(name=team_name, league=league_name)
         elif choice == '5':
             league_name = input("Enter the name of the league: ")
-            season = input("Enter the season year (e.g., 2021): ")
-            fetch_league_standings(league=league_name, season=season)
+            fetch_league_standings(league_name)
         elif choice == '6':
             print("Thank you for using Football Data Fetcher! Exiting the program.")
             break
@@ -43,3 +40,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
