@@ -36,12 +36,12 @@ def display_leagues():
     print("Leagues:")
     display_dataframe(df)
 
-def display_standings():
+def display_league_standings():
     '''
     Fetches and displays the standings from the database.
     '''
-    df = fetch_data_from_table('matches')
-    print("Matches:")
+    df = fetch_data_from_table('league_standings')
+    print("League Standings:")
     display_dataframe(df)
 
 def display_team_details():
@@ -51,15 +51,3 @@ def display_team_details():
     df = fetch_data_from_table('teams')
     print("Team Details:")
     display_dataframe(df)
-
-# Test function calls
-if __name__ == "__main__":
-    print("Displaying Leagues:")
-    display_leagues()
-
-    print("\nDisplaying Standings:")
-    display_standings()
-
-    print("\nDisplaying Team Details:")
-    display_team_details()
-
