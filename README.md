@@ -1,6 +1,6 @@
 # Football Standings Dashboard
 ## Table Contents 
-[Environment variables] (#environment variables)
+[Environment variables](#environment variables)
 
 
 ### Who / What does the project interface with?
