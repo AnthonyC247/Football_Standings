@@ -25,6 +25,8 @@ Providing an easy-to-access and up-to-date platform for users to view football l
 - Terminal display of league standings
 - Terminal display of team details
 
+
+
 ## Project Structure
 
 
@@ -36,7 +38,7 @@ Providing an easy-to-access and up-to-date platform for users to view football l
    2. Navigate to the project directory:
 
    ```bash
-   cd crowd-clique
+   cd Football_Standings
    ```
 
    3. Install the required libraries:
