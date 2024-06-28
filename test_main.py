@@ -22,6 +22,7 @@ class TestFootballDataFetcher(unittest.TestCase):
             self.assertIn("Real Madrid", output)
             self.assertIn("Team \"Real Madrid\" not found.", output)
 
+
 if __name__ == '__main__':
     unittest.main()
 
