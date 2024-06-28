@@ -3,6 +3,7 @@ import unittest
 from unittest.mock import patch
 from main import main
 
+
 class TestFootballDataFetcher(unittest.TestCase):
 
     @patch('builtins.input', side_effect=['6'])
@@ -25,4 +26,5 @@ class TestFootballDataFetcher(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
 
