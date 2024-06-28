@@ -25,6 +25,18 @@ Providing an easy-to-access and up-to-date platform for users to view football l
 - Terminal display of league standings
 - Terminal display of team details
 
+```bash
+   Welcome to Football Data Fetcher! 
+                 The following data can be fetched:
+1. Fetch Team Information
+2. Fetch Team Standings
+3. Fetch Team Statistics
+4. Fetch League
+5. Fetch League Standings
+6. Exit
+What would you like to fetch? Enter                         your choice (1-6): 
+   ```
+
 
 
 ## Project Structure
@@ -34,6 +46,7 @@ Providing an easy-to-access and up-to-date platform for users to view football l
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/your-username/Football_Standings.git
+   ```
    
    2. Navigate to the project directory:
 
