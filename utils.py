@@ -46,8 +46,7 @@ def fetch_league_id(league_name):
     if data and 'response' in data:
         leagues = data['response']
         if leagues:
-            # Return the ID of the first league found
-            return leagues[0]['league']['id']
+            return leagues[0]['league']['id']  # Return the ID of the first league found
     print(f'League "{league_name}" not found.')
     return None
 
@@ -68,7 +67,6 @@ def fetch_team_id(team_name):
     if data and 'response' in data:
         teams = data['response']
         if teams:
-            # Return the ID of the first team found
-            return teams[0]['team']['id']
+            return teams[0]['team']['id']  # Return the ID of the first team found
     print(f'Team "{team_name}" not found.')
     return None
