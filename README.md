@@ -1,8 +1,7 @@
 # Football Standings Dashboard
+## Table Contents 
+[Environment variables] (#environment variables)
 
-
-### What problem are you solving?
-Providing an easy-to-access and up-to-date platform for users to view football league standings and team details.
 
 ### Who / What does the project interface with?
 - Football fans
